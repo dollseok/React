@@ -8,4 +8,5 @@
         console.log(i); //
     }
     // console.log(i);
+    console.log('이은석 수업 듣는중');
 }
