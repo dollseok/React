@@ -3,8 +3,8 @@
 
 {
   function run() {
-    // nullish();
-    optionalChaining();
+    nullish();
+    // optionalChaining();
   }
 
 
