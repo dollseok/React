@@ -1,27 +1,18 @@
 import { React, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-// 컴포넌트에 갈고리 다는 법
-// class Detail2 extends React.Component{
-//   componentDidMount(){
-//     // 컴포넌트 mount 시 여기 코드 실행
-//   }
-//   componentDidUpdate(){
-//     // 컴포넌트 update 시 여기 코드 실행
-//   }
-//   componentWillUnmount(){
-//     // 컴포넌트 unmount 시 여기 코드 실행
-//   }
-// }
+import { Nav } from 'react-bootstrap'
+
 
 function Detail(props){
-  // useEffect써서 컴포넌트에 갈고리 다는 방법
   
-  let [count, setCount] = useState(0)
-  let [alert, setAlert] = useState(true)
   let { id } = useParams();
   let shoe = props.shoes.find((x)=>{ return x.id == id })
   id = Number(id) + 1
+
+  let [count, setCount] = useState(0)
+  let [alert, setAlert] = useState(true)
+  let [탭, 탭변경] = useState(0)
   
   
   useEffect(()=>{
@@ -54,8 +45,42 @@ function Detail(props){
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
+
+      <Nav variant="tabs" defaultActiveKey={"link0"}>
+        <Nav.Item>
+          <Nav.Link eventKey="Link0" onClick={()=>{탭변경(0)}}>버튼0</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="Link1" onClick={()=>{탭변경(1)}}>버튼1</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="Link2" onClick={()=>{탭변경(2)}}>버튼2</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent 탭={탭}/>
+
+
+
     </div>
   )
+}
+
+// props 대신 {} 안에 변수 넣어주면 바로 사용 가능
+function TabContent({탭}){
+  return [<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][탭]
+}
+
+// return 이 있어야 돌려줄수 있다
+function TabContentif(props){
+  if (탭 == 0) {
+    return <div>내용0</div>
+  }
+  else if (탭 == 1) {
+    return <div>내용1</div>
+  }
+  else if (탭 == 2) {
+    return <div>내용2</div>
+  }
 }
 
 export default Detail;
