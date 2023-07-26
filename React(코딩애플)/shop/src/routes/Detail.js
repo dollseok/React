@@ -3,16 +3,18 @@ import { useParams } from "react-router-dom";
 function Detail(props){
 
   let { id } = useParams();
-  // console.log(id)
+  console.log("https://codingapple1.github.io/shop/shoes" + id + ".jpg")
 
   let shoe = props.shoes.find((x)=>{ return x.id == id })
+  id = Number(id) + 1
   // console.log(shoe)
   
   return(
     <div className="container">
       <div className="row">
         <div className="col-md-6">
-          <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%"/>
+          
+          <img src={"https://codingapple1.github.io/shop/shoes" + id + ".jpg"} width="100%"/>
         </div>
         <div className="col-md-6 mt-4">
           <h4 className="pt-5">{ shoe.title }</h4>
