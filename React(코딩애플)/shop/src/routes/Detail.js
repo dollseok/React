@@ -67,7 +67,26 @@ function Detail(props){
 
 // props 대신 {} 안에 변수 넣어주면 바로 사용 가능
 function TabContent({탭}){
-  return [<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][탭]
+  let [fade, setFade] = useState('')
+
+
+  // 탭 state가 변할 때 end 부착
+  useEffect(()=>{
+    setTimeout(()=>{setFade('end')},100)
+    // end를 붙여주세요 == fade라는 state를 end로 바꿔주세요
+    // setFade('end')
+
+    // 탭 state가 변할 때 end 떼주세요
+    return()=>{
+      setFade('')
+    }
+    
+  },[탭])
+
+
+  return (<div className={`start ${fade}`}>
+    { [<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][탭] }
+  </div> )
 }
 
 // return 이 있어야 돌려줄수 있다

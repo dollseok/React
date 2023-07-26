@@ -1,5 +1,17 @@
+/* 1. 애니메이션 동작 전 className 만들기 */
+.start {
+  opacity: 0;
+}
+
+/* 2. 애니메이션 동작 후 className 만들기 */
+.end {
+  opacity: 1;
+  transition: opacity 0.5s; /* transition 추가, opacity가 변경될 때 0.5초에 걸쳐서 변경해주세요 */
+}
+
+
 .main-bg {
-  height: 500px;
+  height:300px;
   background-image: url(./img/bg.jpg);
   background-size: cover;
   background-position: center;
