@@ -48,10 +48,33 @@ function App() {
               .then((res)=>{ 
                 console.log(res.data)
                 setShoeslist(shoes.concat(res.data))
+                let copy = [...shoes, ...res.data];
+                setShoeslist(copy)
               })
               .catch(()=>{
                 console.log('실패했습니다.')
+              
               })
+
+              // 서버로 데이터를 전송하는 POST 요청
+              axios.post('/woiefj', {name:'kim'})
+
+              // 동시에 ajax 요청 여러개하려면
+              Promise.all([ axios.get('/url1'), axios.get('/url2')])
+              .then(()=>{
+                // 모두 성공했을 때 진행
+              })
+
+              // 서버와 데이터를 주고받을 때, 문자만 주고 받을 수 있음
+              // -> 근데 방금 array 오지 않았나? 
+              // "{"name" : "kim"}" 이런 식으로 문자열로 만들어서 주고 받아서 가능
+              // 이런 것을 json 이라고 함
+              // axios가 array로 자동으로 바꿔주는 것이다
+
+              fetch('https://codingapple1.github.io/shop/data2.json')
+              .then(결과 => 결과.json())
+              .then(data=>{})
+
             }}>버튼</button>
             
           </>
