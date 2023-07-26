@@ -32,17 +32,6 @@ function Detail(props){
     }
   }, [count]) 
 
-  // useEffect(()=>{}) // 1. 재렌더링마다 코드 실행하고 싶으면
-  // useEffect(()=>{},[]) // 2. mount시 1회 코드 실행하고 싶으면
-  // // 3. unmount시 1회 코드 실행하고 싶으면
-  // useEffect(()=>{
-  //   return ()=>{
-
-  //   }
-  // }, [])
-  // // 4. useEffect 전에 무엇인가를 실행하려면 언제나 return()=>{}
-  // // 5. 특정 state 변경시에만 실행하려면 [state명]
-
   return(
     <div className="container">
       {

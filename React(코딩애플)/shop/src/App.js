@@ -4,14 +4,14 @@ import { useState } from 'react';
 import { Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
 import data from './data.js'; 
 import Detail from './routes/Detail.js'
-
+import axios from 'axios'
 
 
 
 
 function App() {
 
-  let [shoes] = useState(data);
+  let [shoes, setShoeslist] = useState(data);
 
   let navigate = useNavigate();
 
@@ -42,17 +42,23 @@ function App() {
                   }
               </Row>
             </Container>
+
+            <button onClick={()=>{
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+              .then((res)=>{ 
+                console.log(res.data)
+                setShoeslist(shoes.concat(res.data))
+              })
+              .catch(()=>{
+                console.log('실패했습니다.')
+              })
+            }}>버튼</button>
+            
           </>
         }></Route>  
+
+
         <Route path="/detail/:id" element={ <Detail shoes={ shoes }/> }></Route>
-
-
-
-        <Route path="/about" element={<About/>}>
-          <Route path="member" element={<div>멤버</div>}/>
-          <Route path="location" element={<div>위치</div>}/>
-        </Route>
-        <Route path="*" element={ <div>404 NOT FOUND</div> }></Route>
       </Routes>
     </div>
   );
