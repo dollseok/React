@@ -7,6 +7,8 @@ import Detail from './routes/Detail.js'
 
 
 
+
+
 function App() {
 
   let [shoes] = useState(data);
@@ -33,7 +35,6 @@ function App() {
               <Row>
                 {
                   shoes.map(function(param,i){
-                    console.log(param)
                     return (
                       <Card shoes={shoes[i]} i={i+1}></Card>
                       )
@@ -43,7 +44,10 @@ function App() {
             </Container>
           </>
         }></Route>  
-        <Route path="/detail" element={ <Detail/> }></Route>
+        <Route path="/detail/:id" element={ <Detail shoes={ shoes }/> }></Route>
+
+
+
         <Route path="/about" element={<About/>}>
           <Route path="member" element={<div>멤버</div>}/>
           <Route path="location" element={<div>위치</div>}/>
