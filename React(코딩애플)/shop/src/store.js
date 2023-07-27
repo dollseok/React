@@ -1,7 +1,20 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, createSlice } from '@reduxjs/toolkit'
+
+let user = createSlice({
+  name : 'user',
+  initialState : 'kim'
+})
+
+let stock = createSlice({
+  name : 'stock',
+  initialState : [10,11,12]
+})
+
+
 
 export default configureStore({
-    reducer: {
-
-    }
+  reducer: {
+    user : user.reducer, // 작명, 이름을 같게 함
+    stock : stock.reducer
+  }
 })
