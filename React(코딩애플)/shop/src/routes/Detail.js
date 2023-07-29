@@ -2,10 +2,13 @@ import { React, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { Nav } from 'react-bootstrap'
-
+import { addtoCart } from './../store.js'
+import { useDispatch } from "react-redux";
 
 function Detail(props){
   
+  let dispatch = useDispatch()
+
   let { id } = useParams();
   let shoe = props.shoes.find((x)=>{ return x.id == id })
   id = Number(id) + 1
@@ -42,7 +45,7 @@ function Detail(props){
           <h4 className="pt-5">{ shoe.title }</h4>
           <p>{shoe.content}</p>
           <p>{shoe.price}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button className="btn btn-danger" onClick={()=>{ dispatch(addtoCart(shoe)); }}>주문하기</button>
         </div>
       </div>
 

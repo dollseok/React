@@ -1,29 +1,35 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
-
-let user = createSlice({
-  name : 'user',
-  initialState : 'kim',
-  // 1. state 수정해주는 함수 만들기
-  reducers : {
-    changeName(state){
-      return 'john' + state
-    }
-  }
-  // 2. 만든 함수 export 해줘야 함
-
-})
-
-// 변경함수들 reducers 들이 남음
-export let { changeName } = user.actions // 오른쪽에 있던 자료를 변수로 빼는 문법일 뿐
+import user from './store/userSlice.js'
 
 
 let cart = createSlice({
   name : 'cart',
-  initialState : [
+  initialState :[
     {id : 0, name : 'White and Black', count : 2},
     {id : 2, name : 'Grey Yordan', count : 1}
-  ]
-})
+  ],
+  reducers : {
+    addCount(state, action){
+      // 리스트에서 원하는 조건의 항목의 idx를 찾아주는 것
+      let idx = state.findIndex((a)=>{
+        return a.id == action.payload
+      })
+      state[idx].count++
+    },
+
+    addtoCart(state,action){
+      console.log(action.payload)
+      state.push(
+        {
+          id : action.payload.id,
+          name : action.payload.title,
+          count : 1,
+        }
+      )
+    }
+  }
+  })
+  export let { addCount, addtoCart } = cart.actions
 
 
 export default configureStore({
